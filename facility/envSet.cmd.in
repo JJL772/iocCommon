@@ -1,0 +1,24 @@
+#==============================================================
+#
+#  Abs:  RTEMS CPU environment (non-SLAC development)
+#
+#  Name: envSet.cmd
+#
+#  Facility: LCLS Controls
+#
+#  Auth: 14-Oct-2026, Jeremy Lorelli   (lorelli)
+#  Rev:  dd-mmm-yyyy, Jeremy Lorelli (lorelli)
+#
+#==============================================================
+
+# Substitute UID/GID and IP with your own.
+setenv("NFS_FILE_SYSTEM", "@UID@.@GID@@@IP@")
+
+setenv("EPICS_IOCS", "@TOP@")
+setenv("IOC_COMMON", "@TOP@")
+
+setenv("IOC_USER", "laci")
+setenv("IOC_OWNER", "laci")
+setenv("IOC_GROUP", "lcls")
+setenv("FACILITY", "dev")
+

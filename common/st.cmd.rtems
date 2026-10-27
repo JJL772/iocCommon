@@ -1,0 +1,35 @@
+#==============================================================
+#
+#  Abs:  Common Startup Script for RTEMS IOCs
+#
+#  Name: st.cmd.rtems
+#
+#  Rem: This script expectes the followin enviroment
+#       varaiables to be set upon entry:
+#
+#         EPICS_IOC_APP - ioc application boot directory
+#
+#       The following are for development only;
+#         ST_CMD        - ioc application startup file, optonal.
+#                         default is st.cmd
+#         NO_POST_FILE  - the files in $IOC_DATA/<node>/iocInfo
+#                         are not generated  after ioc startup
+#                         has completed. 
+#
+#
+#  Facility: SLAC Controls
+#==============================================================
+#
+
+cexpsh("../facility/envSet.cmd")
+
+# Load subsystem startup file 
+chdir(getenv("EPICS_IOC_APP"))
+getenv("ST_CMD") || setenv("ST_CMD","st.cmd")
+cexpsh(getenv("ST_CMD"))
+
+# Save diagnostic information
+getenv("NO_POST_FILE") || cexpsh("st.cmd.rtems.post")
+getenv("NO_POST_FILE") && printf("Warning!!! The post boot script not be executed\n")
+
+# End of file.
